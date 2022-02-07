@@ -20,7 +20,6 @@ The module supports the following reports:
 It is also possible to view Index-contact taxonomy through a patient contact tree.
 
 #Building from Source:
-
 You will need to have Java 1.6+ and Maven 2.x+ installed. Use the command 'mvn package' to compile and package the module. The .omod file will be in the omod/target folder.
 
 Alternatively you can add the snippet provided in the Creating Modules page to your omod/pom.xml and use the mvn command:
@@ -30,7 +29,7 @@ It will allow you to deploy any changes to your web resources such as jsp or js 
 
 #Installation:
 1. Build the module to produce the .omod file.
-2. Use the OpenMRS Administration -> Manage Modules screen to upload and install the .omod file.
+2. Use the OpenMRS Administration -> Manage Modules screen to upload and install the .omod file
 
 -If uploads are not allowed from the web (changeable via a runtime property), you can drop the .omod
 into the ~/.OpenMRS/modules folder (where ~/.OpenMRS is assumed to be the Application 

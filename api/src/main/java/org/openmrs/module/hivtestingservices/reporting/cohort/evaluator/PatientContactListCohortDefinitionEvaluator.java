@@ -34,15 +34,22 @@ public class PatientContactListCohortDefinitionEvaluator implements PatientConta
 
 
 		String qry = "SELECT c.id\n" +
-				"from kenyaemr_hiv_testing_patient_contact c\n" +
-				"         inner join kenyaemr_etl.etl_hts_test t on c.patient_related_to = t.patient_id\n" +
+				"from openmrs.kenyaemr_hiv_testing_patient_contact c\n" +
+				"         left join (select t.patient_id\n" +
+				"                    from kenyaemr_etl.etl_hts_test t\n" +
+				"                    where t.voided = 0\n" +
+				"                      and t.test_type = 1\n" +
+				"                      and date(t.visit_date) <= date(:endDate)\n" +
+				"                      and t.final_test_result = 'Positive') t\n" +
+				"                   on c.patient_related_to = t.patient_id\n" +
+				"         left join (select e.patient_id\n" +
+				"                    from kenyaemr_etl.etl_hiv_enrollment e\n" +
+				"                    where date(e.visit_date) <= date(:endDate)) e\n" +
+				"                   on c.patient_related_to = e.patient_id\n" +
 				"where date(c.date_created) between date(:startDate) and date(:endDate)\n" +
-				"  and t.voided = 0\n" +
-				"  and t.test_type = 2\n" +
 				"  and c.relationship_type in (163565, 5617, 162221)\n" +
-				"  and date(t.visit_date) between date(:startDate) and date(:endDate)\n" +
-				"  and t.final_test_result = 'Positive'\n" +
-				"  and c.voided = 0;";
+				"  and c.voided = 0\n" +
+				"  and (t.patient_id is not null or e.patient_id is not null);";
 
 		SqlQueryBuilder builder = new SqlQueryBuilder();
 		builder.append(qry);

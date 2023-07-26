@@ -31,7 +31,7 @@ import org.openmrs.module.hivtestingservices.reporting.data.client.definition.PN
 import org.openmrs.module.hivtestingservices.reporting.data.converter.MaritalStatusConverter;
 import org.openmrs.module.hivtestingservices.reporting.data.patientContact.definition.*;
 import org.openmrs.module.hivtestingservices.reporting.definition.PatientContactDataSetDefinition;
-import org.openmrs.module.hivtestingservices.reporting.library.PNSReportIndicatorLibrary;
+import org.openmrs.module.hivtestingservices.reporting.library.HTSIndexReportIndicatorLibrary;
 import org.openmrs.module.hivtestingservices.reporting.library.shared.CommonHtsDimensionLibrary;
 import org.openmrs.module.kenyacore.report.ReportDescriptor;
 import org.openmrs.module.kenyacore.report.ReportUtils;
@@ -65,8 +65,8 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-@Builds({"kenyaemr.hts.common.report.pnsRegister"})
-public class PNSRegisterReportBuilder extends AbstractReportBuilder {
+@Builds({"kenyaemr.hts.common.report.htsIndexTestingRegister"})
+public class HTSIndexTestingRegisterReportBuilder extends AbstractReportBuilder {
     public static final String ENC_DATE_FORMAT = "yyyy/MM/dd";
     public static final String DATE_FORMAT = "dd/MM/yyyy";
 
@@ -74,7 +74,7 @@ public class PNSRegisterReportBuilder extends AbstractReportBuilder {
     private CommonHtsDimensionLibrary commonDimensions;
 
     @Autowired
-    private PNSReportIndicatorLibrary htsIndicators;
+    private HTSIndexReportIndicatorLibrary htsIndicators;
 
     @Override
     protected List<Parameter> getParameters(ReportDescriptor reportDescriptor) {
@@ -97,7 +97,7 @@ public class PNSRegisterReportBuilder extends AbstractReportBuilder {
 
     protected DataSetDefinition datasetColumns() {
         PatientContactDataSetDefinition dsd = new PatientContactDataSetDefinition();
-        dsd.setName("PNSRegister");
+        dsd.setName("HTSIndexTestingRegister");
         dsd.setDescription("Patient Contact information");
         dsd.addSortCriteria("Visit Date", SortCriteria.SortDirection.ASC);
         dsd.addParameter(new Parameter("startDate", "Start Date", Date.class));

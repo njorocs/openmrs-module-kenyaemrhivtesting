@@ -45,7 +45,7 @@ import org.openmrs.module.hivtestingservices.reporting.data.patientContact.defin
 import org.openmrs.module.hivtestingservices.reporting.data.patientContact.definition.RelatedPatientTestStrategyDataDefinition;
 import org.openmrs.module.hivtestingservices.reporting.data.patientContact.definition.RelatedPatientVisitDateDataDefinition;
 import org.openmrs.module.hivtestingservices.reporting.definition.PatientContactDataSetDefinition;
-import org.openmrs.module.hivtestingservices.reporting.library.PNSReportIndicatorLibrary;
+import org.openmrs.module.hivtestingservices.reporting.library.HTSIndexReportIndicatorLibrary;
 import org.openmrs.module.hivtestingservices.reporting.library.shared.CommonHtsDimensionLibrary;
 import org.openmrs.module.kenyacore.report.ReportDescriptor;
 import org.openmrs.module.kenyacore.report.ReportUtils;
@@ -75,7 +75,7 @@ public class FamilyTestingRegisterReportBuilder extends AbstractReportBuilder {
     private CommonHtsDimensionLibrary commonDimensions;
 
     @Autowired
-    private PNSReportIndicatorLibrary htsIndicators;
+    private HTSIndexReportIndicatorLibrary htsIndicators;
 
     @Override
     protected List<Parameter> getParameters(ReportDescriptor reportDescriptor) {
